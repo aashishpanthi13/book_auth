@@ -10,6 +10,7 @@ public interface BookService {
     BookDto getBook(int id);
     List<BookDto> getAllBooks();
     Book updateBook(int id, BookDto bookDto);
-    void deleteBook(int id);
     BookDto addAuthorToBook(int bookId, int authorId);
+    BookDto removeAuthorFromBook(int bookId, int authorId);
+    void deleteBook(int id);
 }

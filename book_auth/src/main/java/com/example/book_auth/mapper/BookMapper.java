@@ -6,7 +6,7 @@ import org.mapstruct.Mapper;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = {AuthorMapper.class})
+@Mapper(componentModel = "spring")
 public interface BookMapper {
     BookDto toDto(Book book);
     Book toEntity(BookDto bookDTO);

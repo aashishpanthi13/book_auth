@@ -1,5 +1,4 @@
 package com.example.book_auth.serviceimpl;
-
 import com.example.book_auth.dto.AuthorDto;
 import com.example.book_auth.entity.Author;
 import com.example.book_auth.mapper.AuthorMapper;
@@ -7,6 +6,7 @@ import com.example.book_auth.repo.AuthorRepo;
 import com.example.book_auth.repo.BookRepo;
 import com.example.book_auth.service.AuthorService;
 import jakarta.transaction.Transactional;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,8 +14,16 @@ import java.util.List;
 @Service
 @Transactional
 public class AuthorServiceImpl implements AuthorService {
-    private AuthorRepo authorRepo;
-    private AuthorMapper authorMapper;
+    private final AuthorRepo authorRepo;
+    private final  AuthorMapper authorMapper;
+    private BookRepo bookRepo;
+    private  AuthorService authorService;
+    public AuthorServiceImpl(@Lazy AuthorRepo authorRepo, @Lazy AuthorService authorService, AuthorMapper authorMapper) {
+        this.authorRepo = authorRepo;
+        this.authorService = authorService;
+        this.authorMapper = authorMapper;
+
+    }
 
     @Override
     public AuthorDto createAuthor(AuthorDto authorDto) {
